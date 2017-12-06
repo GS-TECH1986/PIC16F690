@@ -16,7 +16,7 @@
 ;--------------------------------------------------------------------------------------------------------------
 ;DECLARACION DE VARIABLES Y CONSTANTES
 
-#define STOP_SW PORT
+
 
 __CONFIG   _CP_OFF & _DATA_CP_OFF & _LVP_OFF & _BOREN_OFF & _MCLRE_ON & _WDT_OFF & _PWRTE_ON & _INTOSC_OSC_NOCLKOUT
  INCLUDE
@@ -26,11 +26,42 @@ List p=16f877a
 RADIX hex
 
 RETARDOS.INC
-EQU
+             
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             EQU B'XXXXXXXX'
+             
+             #define STOP_SW PORT
+             #define STOP_SW PORT
+             #define STOP_SW PORT
+             #define STOP_SW PORT
+             #define STOP_SW PORT
+             #define STOP_SW PORT
+             #define STOP_SW PORT
+             #define STOP_SW PORT
+             #define STOP_SW PORT
+             #define STOP_SW PORT
 
 CBLOCK
 DIG
-
+8_DIG
+S_GIG
+T_DIG
+O_DIG
+P_DIG
+C_DIG
+H_DIG
+R_DIG
+G_DIG
 END
 
 
