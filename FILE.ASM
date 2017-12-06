@@ -131,7 +131,11 @@ btfss STATUS,C
 goto SET_CHRG
 goto SET_STOP
 ;----------------------------------------------------------------------------------------------------------
-;DESPLIEGUE
+;DESPLIEGUE    ;enviar bit, generar relog, tomar digito
+
+
+
+return
 
 
 
