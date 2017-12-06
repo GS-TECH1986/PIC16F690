@@ -1,6 +1,13 @@
 ;--------------------------------------------------------------------------------------------------------------
 ;ENCABEZADO
 ;
+
+         ;NOMBRE CARGADOR TOTALIFT
+
+      ;FECHA: 01/12/17
+
+;DEVICE: PIC16F690
+
 ;
 ;
 ;
@@ -22,6 +29,7 @@ RETARDOS.INC
 EQU
 
 CBLOCK
+DIG
 
 END
 
@@ -39,6 +47,27 @@ END
 
 ;-------------------------------------------------------------------------------------------------------------
 ;CONFIGURACION DE PUERTOS
+CONFIG_PUERTOS
+
+ bsf STATUS,RP0 ; pongo rp0 a 1 y paso al banco1
+
+movlw b'11111' ; cargo W con 11111
+
+movwf trisa ; y paso el valor a trisa movlw b'00000000' ; cargo W con 00000000
+
+movwf trisb ; y paso el valor a trisb
+
+movlw b'11111'
+
+movwf ADCON
+
+bcf estado,5 ; pongo rp0 a 0 y regreso al banco0
+
+return
+
+MUESTREO
+
+return
 TRISA
 TRISB
 TRISC
@@ -69,7 +98,7 @@ movwf DIG
 call DESPLIEGUE
 return
 ;------------------------------------------------------------------------------------------------------------
-;PROBAR DISPLAY
+;PROBAR DISPLAY 8888
 ;----------------------------------------------------------------------------------------------------------
 ISR
 GIE PEIE T0IE PIE1 PIE2
@@ -102,9 +131,14 @@ btfss STATUS,C
 goto SET_CHRG
 goto SET_STOP
 ;----------------------------------------------------------------------------------------------------------
+;DESPLIEGUE
 
 
 
+
+
+
+;--------------------------------------------------------------------------------------------------------------
 RETARDO
 RLYOFF
 SOP_WORD
@@ -202,12 +236,6 @@ movwf DIG0
 
  
 
-         ;NOMBRE CARGADOR TOTALIFT
-
-      ;FECHA: 01/12/17
-
-;DEVICE: PIC16F690
-
 
 
 
@@ -293,27 +321,7 @@ DESPLIEGUE
 
 return
 
-CONFIG_PUERTOS
 
- bsf STATUS,RP0 ; pongo rp0 a 1 y paso al banco1
-
-movlw b'11111' ; cargo W con 11111
-
-movwf trisa ; y paso el valor a trisa movlw b'00000000' ; cargo W con 00000000
-
-movwf trisb ; y paso el valor a trisb
-
-movlw b'11111'
-
-movwf ADCON
-
-bcf estado,5 ; pongo rp0 a 0 y regreso al banco0
-
-return
-
-MUESTREO
-
-return
 
 ;
 
