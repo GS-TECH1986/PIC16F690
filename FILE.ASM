@@ -27,18 +27,26 @@ RADIX hex
 
 RETARDOS.INC
              
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
-             EQU B'XXXXXXXX'
+
+
+
+
+
+
+
+
+       
+
+8_DIG     EQU B'XXXXXXXX'
+S_GIG     EQU B'XXXXXXXX'
+T_DIG     EQU B'XXXXXXXX'
+O_DIG     EQU B'XXXXXXXX'
+P_DIG     EQU B'XXXXXXXX'
+C_DIG     EQU B'XXXXXXXX'
+H_DIG     EQU B'XXXXXXXX'
+R_DIG     EQU B'XXXXXXXX'
+G_DIG     EQU B'XXXXXXXX'
+             
              
              #define STOP_SW PORT
              #define STOP_SW PORT
@@ -53,15 +61,7 @@ RETARDOS.INC
 
 CBLOCK
 DIG
-8_DIG
-S_GIG
-T_DIG
-O_DIG
-P_DIG
-C_DIG
-H_DIG
-R_DIG
-G_DIG
+
 END
 
 
