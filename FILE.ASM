@@ -1,3 +1,57 @@
+;--------------------------------------------------------------------------------------------------------------
+;ENCABEZADO
+;
+;
+;
+;
+;
+;
+;--------------------------------------------------------------------------------------------------------------
+;DECLARACION DE VARIABLES Y CONSTANTES
+
+
+
+
+
+
+
+;-------------------------------------------------------------------------------------------------------------
+;INICIO
+
+
+
+
+
+
+;-------------------------------------------------------------------------------------------------------------
+;CONFIGURACION DE PUERTOS
+
+
+
+
+
+
+
+
+MUESTREO
+RETARDO
+RLYOFF
+SOP_WORD
+RLYON
+
+BANK1
+CONFIGURAR TRIS
+BANK0
+CONFIGURAR ADC
+CONFIGURAR TMR0
+CLARIFICAR PUERTOS
+
+PROBAR DISPLAY
+CARGAR DIGITO
+ENVIAR_BIT
+ROTACION1-8
+ENVIARLETRA
+
 STATUS
 PORTA
 PORTB
