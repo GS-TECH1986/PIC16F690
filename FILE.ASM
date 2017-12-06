@@ -9,7 +9,21 @@
 ;--------------------------------------------------------------------------------------------------------------
 ;DECLARACION DE VARIABLES Y CONSTANTES
 
+#define STOP_SW PORT
 
+__CONFIG   _CP_OFF & _DATA_CP_OFF & _LVP_OFF & _BOREN_OFF & _MCLRE_ON & _WDT_OFF & _PWRTE_ON & _INTOSC_OSC_NOCLKOUT
+ INCLUDE
+
+List p=16f877a
+
+RADIX hex
+
+RETARDOS.INC
+EQU
+
+CBLOCK
+
+END
 
 
 
@@ -25,75 +39,40 @@
 
 ;-------------------------------------------------------------------------------------------------------------
 ;CONFIGURACION DE PUERTOS
-
-
-
-
-
-
-
-
-MUESTREO
-RETARDO
-RLYOFF
-SOP_WORD
-RLYON
-
-BANK1
-CONFIGURAR TRIS
-BANK0
-CONFIGURAR ADC
-CONFIGURAR TMR0
-CLARIFICAR PUERTOS
-
-PROBAR DISPLAY
-CARGAR DIGITO
-ENVIAR_BIT
-ROTACION1-8
-ENVIARLETRA
-
+TRISA
+TRISB
+TRISC
+;CONFIGURAR ADC
+;CONFIGURAR TMR0
+;CLARIFICAR PUERTOS
+;BANK1
+;CONFIGURAR TRIS
+;BANK0
 STATUS
 PORTA
 PORTB
 PORTC
-TMR0
-PCL
-INTCON
-TRISA
-TRISB
-TRISC
-ADCON0
-ADRESH
-ADRESL
-ADCON1
-ANSEL
-
-GIE PEIE T0IE PIE1 PIE2
-
-
-
-
-
-btfsc STOP_SW
-goto SET_CHRG
-goto SET_STOP
-
-#define STOP_SW PORT
-movlw  b'11111111'
-movwf ADCON
-
-movf ADRESSLOW,w
-subwf ADRESSLOW,W
-btfss STATUS,C
-goto SET_CHRG
-goto SET_STOP
-
-SET_STOP
-bcf RLY
-bcf INTCON,TMR0
-call STOPWORD
+;------------------------------------------------------------------------------------------------------------
+;ENVIARLETRA
+ENVIAR_LETRA
+movf DIG0,w
+movwf DIG
 call DESPLIEGUE
-
+movf DIG1,w
+movwf DIG
+call DESPLIEGUE
+movf DIG2,w
+movwf DIG
+call DESPLIEGUE
+movf DIG3,w
+movwf DIG
+call DESPLIEGUE
+return
+;------------------------------------------------------------------------------------------------------------
+;PROBAR DISPLAY
+;----------------------------------------------------------------------------------------------------------
+ISR
+GIE PEIE T0IE PIE1 PIE2
 ISR
 movwf W_REG
 btfsc INTCON, ADCINT
@@ -103,6 +82,77 @@ call COMP_RLY
 swapwf W_REG,F
 swapf W_REG,w
 retfie
+retfie
+;-------------------------------------------------------------------------------------------------------------
+
+
+;MUESTREO
+btfsc STOP_SW
+goto SET_CHRG
+goto SET_STOP
+
+
+
+
+;---------------------------------------------------------------------------------------------------------
+;COMPARAR ADC
+movf ADRESSLOW,w
+subwf ADRESSLOW,W
+btfss STATUS,C
+goto SET_CHRG
+goto SET_STOP
+;----------------------------------------------------------------------------------------------------------
+
+
+
+RETARDO
+RLYOFF
+SOP_WORD
+RLYON
+
+
+
+
+
+
+
+CARGAR DIGITO
+ENVIAR_BIT
+ROTACION1-8
+
+
+
+TMR0
+PCL
+INTCON
+
+ADCON0
+ADRESH
+ADRESL
+ADCON1
+ANSEL
+
+
+
+
+
+
+
+
+
+
+movlw  b'11111111'
+movwf ADCON
+
+
+
+SET_STOP
+bcf RLY
+bcf INTCON,TMR0
+call STOPWORD
+call DESPLIEGUE
+
+
 
 COMP_RLY
 btfss RLYCHRG
@@ -122,20 +172,7 @@ bsf CLK
 return
 SETPOINT
 AUX
-ENVIAR_LETRA
-movf DIG0,w
-movwf DIG
-call DESPLIEGUE
-movf DIG1,w
-movwf DIG
-call DESPLIEGUE
-movf DIG2,w
-movwf DIG
-call DESPLIEGUE
-movf DIG3,w
-movwf DIG
-call DESPLIEGUE
-return
+
 
 STOP_WORD
 movlw S_DIG
@@ -173,12 +210,6 @@ movwf DIG0
 
 
 
-__CONFIG   _CP_OFF & _DATA_CP_OFF & _LVP_OFF & _BOREN_OFF & _MCLRE_ON & _WDT_OFF & _PWRTE_ON & _INTOSC_OSC_NOCLKOUT
- INCLUDE
-
-List p=16f877a
-
-RADIX hex
 
 ;-------------------------------------------------------------------------------------------------------------------------------
 
@@ -304,11 +335,7 @@ ANSEL
 
 
 
-EQU
 
-CBLOCK
-
-END
 
 NOMBRE
 
@@ -327,7 +354,7 @@ TRISB
 TRISC
 
 ADCON
-RETARDOS.INC
+
 ADRESH
 ADRESL
 
