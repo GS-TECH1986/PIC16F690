@@ -1,5 +1,85 @@
+btfsc STOP_SW
+goto SET_CHRG
+goto SET_STOP
 
-__CONFIG   _CP_OFF & _DATA_CP_OFF & _LVP_OFF & _BOREN_OFF & _MCLRE_ON & _WDT_OFF & _PWRTE_ON & _INTOSC_OSC_NOCLKOUT
+#define STOP_SW PORT
+movlw  b'11111111'
+movwf ADCON
+
+movf ADRESSLOW,w
+subwf ADRESSLOW,W
+btfss STATUS,C
+goto SET_CHRG
+goto SET_STOP
+
+SET_STOP
+bcf RLY
+bcf INTCON,TMR0
+call STOPWORD
+call DESPLIEGUE
+
+ISR
+movwf W_REG
+btfsc INTCON, ADCINT
+call ADC_SENSE
+btfsc INTCON,TMR0
+call COMP_RLY
+swapwf W_REG,F
+swapf W_REG,w
+retfie
+
+COMP_RLY
+btfss RLYCHRG
+goto RLYSET
+goto RLYCLEAR
+RLYSET bsf RLYCHRG
+return
+RLYCLEAR bcf RLYCHRG
+return
+DESPLIEGUE
+btfss DIG,0h
+goto CLRCLOCK
+goto SETCLOCK
+SETCLOCK
+bsf DATABIT
+bsf CLK
+return
+SETPOINT
+AUX
+ENVIAR_LETRA
+movf DIG0,w
+movwf DIG
+call DESPLIEGUE
+movf DIG1,w
+movwf DIG
+call DESPLIEGUE
+movf DIG2,w
+movwf DIG
+call DESPLIEGUE
+movf DIG3,w
+movwf DIG
+call DESPLIEGUE
+return
+
+STOP_WORD
+movlw S_DIG
+movwf DIG0
+movlw S_DIG
+movwf DIG0
+movlw S_DIG
+movwf DIG0
+movlw S_DIG
+movwf DIG0
+return
+CHRG_WORD
+movlw S_DIG
+movwf DIG0
+movlw S_DIG
+movwf DIG0
+movlw S_DIG
+movwf DIG0
+movlw S_DIG
+movwf DIG0
 
 ;Datasheet, instruction set, pin diagram, block diagram, file map, bank0, directivas, flowchart, easyeda, device list
 
@@ -15,6 +95,9 @@ __CONFIG   _CP_OFF & _DATA_CP_OFF & _LVP_OFF & _BOREN_OFF & _MCLRE_ON & _WDT_OFF
 
 ;DEVICE: PIC16F690
 
+
+
+__CONFIG   _CP_OFF & _DATA_CP_OFF & _LVP_OFF & _BOREN_OFF & _MCLRE_ON & _WDT_OFF & _PWRTE_ON & _INTOSC_OSC_NOCLKOUT
  INCLUDE
 
 List p=16f877a
@@ -22,6 +105,11 @@ List p=16f877a
 RADIX hex
 
 ;-------------------------------------------------------------------------------------------------------------------------------
+
+
+STOP_SW
+SET_CRGH
+SET_STOP
 
 RLYA
 
