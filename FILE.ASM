@@ -56,6 +56,28 @@ DS1_4
 CN6_2
 CN6_3
 CN6_4
+MM5451_CLK
+MM5451_DATA
+#define STOP_SW PORTA,0 ;
+#define STOP_SW PORTA,1 ;
+#define STOP_SW PORTA,2 ;
+#define STOP_SW PORTA,3 ;
+#define STOP_SW PORTA,4
+#define STOP_SW PORTA,5
+#define STOP_SW PORTB,4
+#define STOP_SW PORTB,5
+#define STOP_SW PORTB,6
+#define STOP_SW PORTB,7
+#define STOP_SW PORTC,0
+#define STOP_SW PORTC,1
+#define STOP_SW PORTC,2
+#define STOP_SW PORTC,3
+#define STOP_SW PORTC,4
+#define STOP_SW PORTC,5
+#define STOP_SW PORTC,6
+#define STOP_SW PORTC,7
+
+
             
             
             #define STOP_SW PORT
