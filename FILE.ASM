@@ -2,7 +2,7 @@
 ;ENCABEZADO
 ;
 
-         ;NOMBRE CARGADOR TOTALIFT
+         ;NOMBRE CARGADOR TOTALIFT 36V
 
       ;FECHA: 01/12/17
 
@@ -21,7 +21,7 @@
 __CONFIG   _CP_OFF & _DATA_CP_OFF & _LVP_OFF & _BOREN_OFF & _MCLRE_ON & _WDT_OFF & _PWRTE_ON & _INTOSC_OSC_NOCLKOUT
  INCLUDE
 
-List p=16f877a
+List p=16f690
 
 RADIX hex
 
@@ -58,24 +58,24 @@ CN6_3
 CN6_4
 MM5451_CLK
 MM5451_DATA
-#define STOP_SW PORTA,0 ;
+#define RL1     PORTA,0 ; C3, 1KHZ, ACTIVACION RL1
 #define STOP_SW PORTA,1 ;
 #define STOP_SW PORTA,2 ;
 #define STOP_SW PORTA,3 ;
-#define STOP_SW PORTA,4
-#define STOP_SW PORTA,5
-#define STOP_SW PORTB,4
-#define STOP_SW PORTB,5
-#define STOP_SW PORTB,6
-#define STOP_SW PORTB,7
-#define STOP_SW PORTC,0
-#define STOP_SW PORTC,1
-#define STOP_SW PORTC,2
-#define STOP_SW PORTC,3
-#define STOP_SW PORTC,4
-#define STOP_SW PORTC,5
-#define STOP_SW PORTC,6
-#define STOP_SW PORTC,7
+#define STOP_SW PORTA,4 ;
+#define STOP_SW PORTA,5 ;
+#define STOP_SW PORTB,4 ;
+#define STOP_SW PORTB,5 ;
+#define STOP_SW PORTB,6 ;
+#define STOP_SW PORTB,7 ;
+#define STOP_SW PORTC,0 ;
+#define STOP_SW PORTC,1 ;
+#define STOP_SW PORTC,2 ;
+#define STOP_SW PORTC,3 ;
+#define STOP_SW PORTC,4 ;
+#define STOP_SW PORTC,5 ;
+#define STOP_SW PORTC,6 ;
+#define STOP_SW PORTC,7 ;
 
 
             
