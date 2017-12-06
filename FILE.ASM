@@ -47,9 +47,21 @@ H_DIG     EQU B'XXXXXXXX'
 R_DIG     EQU B'XXXXXXXX'
 G_DIG     EQU B'XXXXXXXX'
              
-             
-             #define STOP_SW PORT
-             #define STOP_SW PORT
+RL1_BIT
+RL2_BIT
+DS1_1
+DS1_2
+DS1_3
+DS1_4
+CN6_2
+CN6_3
+CN6_4
+            
+            
+            #define STOP_SW PORT
+       
+       
+       #define STOP_SW PORT
              #define STOP_SW PORT
              #define STOP_SW PORT
              #define STOP_SW PORT
