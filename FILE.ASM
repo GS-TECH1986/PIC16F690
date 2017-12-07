@@ -64,7 +64,7 @@ MM5451_DATA
 #define STOP_SW PORTA,3 ; C16,XT1       (IN)
 #define STOP_SW PORTA,4 ; C15,XT1        (IN)
 #define STOP_SW PORTA,5 ; R12            (IN)
-#define STOP_SW PORTB,4 ;
+#define STOP_SW PORTB,4 ;DS1_2
 #define STOP_SW PORTB,5 ; 
 #define STOP_SW PORTB,6 ; 
 #define STOP_SW PORTB,7 ; CN6_2
