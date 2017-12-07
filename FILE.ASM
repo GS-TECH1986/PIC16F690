@@ -58,24 +58,24 @@ CN6_3
 CN6_4
 MM5451_CLK
 MM5451_DATA
-#define RL1     PORTA,0 ; C3, 1KHZ, ACTIVACION RL1
-#define RL2     PORTA,1 ; C4, 1KHZ, ACTIVACION RL2
-#define NC1     PORTA,2 ; NO CONNECTION
-#define STOP_SW PORTA,3 ;
-#define STOP_SW PORTA,4 ;
-#define STOP_SW PORTA,5 ;
+#define RL1     PORTA,0 ; C3, 1KHZ, ACTIVACION RL1    (OUT)
+#define RL2     PORTA,1 ; C4, 1KHZ, ACTIVACION RL2    (OUT)
+#define NC1     PORTA,2 ; NO CONNECTION               (IN/OUT)
+#define STOP_SW PORTA,3 ; C16,XT1       (IN)
+#define STOP_SW PORTA,4 ; C15,XT1        (IN)
+#define STOP_SW PORTA,5 ; R12            (IN)
 #define STOP_SW PORTB,4 ;
-#define STOP_SW PORTB,5 ;
-#define STOP_SW PORTB,6 ;
-#define STOP_SW PORTB,7 ;
-#define STOP_SW PORTC,0 ;
+#define STOP_SW PORTB,5 ; 
+#define STOP_SW PORTB,6 ; 
+#define STOP_SW PORTB,7 ; CN6_2
+#define STOP_SW PORTC,0 ; DS1_1
 #define STOP_SW PORTC,1 ;
 #define STOP_SW PORTC,2 ;
 #define STOP_SW PORTC,3 ;
 #define STOP_SW PORTC,4 ;
 #define STOP_SW PORTC,5 ;
-#define STOP_SW PORTC,6 ;
-#define STOP_SW PORTC,7 ;
+#define STOP_SW PORTC,6 ;CN6_4
+#define STOP_SW PORTC,7 ;CN6_3
 
 
             
