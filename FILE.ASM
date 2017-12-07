@@ -234,6 +234,19 @@ return
 
 
 ;--------------------------------------------------------------------------------------------------------------
+8888_WORD
+movlw DIG_8
+movwf DIG1
+movwf DIG2
+movwf DIG3
+movwf DIG4
+return
+;---------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 RETARDO
 RLYOFF
 SOP_WORD
@@ -302,7 +315,7 @@ return
 SETPOINT
 AUX
 
-
+;---------------------------------------------------------------------------------------------------------------------------
 STOP_WORD
 movlw S_DIG
 movwf DIG0
@@ -313,16 +326,19 @@ movwf DIG0
 movlw S_DIG
 movwf DIG0
 return
-CHRG_WORD
-movlw S_DIG
-movwf DIG0
-movlw S_DIG
-movwf DIG0
-movlw S_DIG
-movwf DIG0
-movlw S_DIG
-movwf DIG0
+;---------------------------------------------------------------------------------------------------------------------------
 
+CHRG_WORD
+movlw C_DIG
+movwf DIG1
+movlw H_DIG
+movwf DIG2
+movlw R_DIG
+movwf DIG3
+movlw G_DIG
+movwf DIG4
+return
+;------------------------------------------------------------------------------------------------------------------------------
 ;Datasheet, instruction set, pin diagram, block diagram, file map, bank0, directivas, flowchart, easyeda, device list
 
 ;arduino, ccs c, pic simulator, proteus, mplab, programmer, P16F690 LIST, Retardos.inc, partsim, piccompileronline
