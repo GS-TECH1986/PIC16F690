@@ -203,6 +203,11 @@ goto SET_STOP
 ;DESPLIEGUE    ;enviar bit, generar relog, tomar digito
 
 comf MM5451_CLK
+
+rrf DIG,f
+btfss DIG,0h
+goto 
+bcf MM5451_DAT
 return
 
 
