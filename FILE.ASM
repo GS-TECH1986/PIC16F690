@@ -94,8 +94,12 @@ MM5451_DATA
              #define STOP_SW PORT
 
 CBLOCK
-DIG
-
+W_REG
+AUX
+DIG1
+DIG2
+DIG3
+DIG4
 END
 
 
