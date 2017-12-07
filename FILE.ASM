@@ -132,7 +132,9 @@ movlw b'11111111'
 movwf ADCON
 
 bcf estado,5 ; pongo rp0 a 0 y regreso al banco0
-
+clrf PORTA
+clrf PORTB
+clrf PORTC
 return
 
 MUESTREO
