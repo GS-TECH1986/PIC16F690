@@ -199,12 +199,26 @@ goto SET_STOP
 ;DESPLIEGUE    ;enviar bit, generar relog, tomar digito
 
 
-
 return
 
 
 
 
+;-----------------------------------------------------------------------------------------------------------------
+;complementar relevadores 1khz
+COMP_RLY
+COMF RL1
+COMF RL2
+return
+goto SET_RLY
+bcf RL1
+bcf RL2
+return
+SET_RLY
+bsf RL1
+bsf RL2
+
+return
 
 
 ;--------------------------------------------------------------------------------------------------------------
