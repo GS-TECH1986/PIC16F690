@@ -198,7 +198,7 @@ goto SET_STOP
 ;----------------------------------------------------------------------------------------------------------
 ;DESPLIEGUE    ;enviar bit, generar relog, tomar digito
 
-
+comf MM5451_CLK
 return
 
 
