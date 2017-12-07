@@ -328,13 +328,13 @@ AUX
 ;---------------------------------------------------------------------------------------------------------------------------
 STOP_WORD
 movlw S_DIG
-movwf DIG0
-movlw S_DIG
-movwf DIG0
-movlw S_DIG
-movwf DIG0
-movlw S_DIG
-movwf DIG0
+movwf DIG1
+movlw T_DIG
+movwf DIG2
+movlw O_DIG
+movwf DIG3
+movlw P_DIG
+movwf DIG4
 return
 ;---------------------------------------------------------------------------------------------------------------------------
 
