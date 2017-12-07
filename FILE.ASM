@@ -255,9 +255,19 @@ RLYON
 
 
 
-
+;---------------------------------------------------------------------------------------------------------------------------------
 ENVIAR_WORD
+movfw DIG1
+call ENVIAR_LETRA
+movfw DIG2
+call ENVIAR_LETRA
+movfw DIG3
+call ENVIAR_LETRA
+movfw DIG4
+call ENVIAR_LETRA
+return
 
+;----------------------------------------------------------------------------------------------------------------------------------
 CARGAR DIGITO
 ENVIAR_BIT
 ROTACION1-8
