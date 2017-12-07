@@ -349,6 +349,57 @@ movlw G_DIG
 movwf DIG4
 return
 ;------------------------------------------------------------------------------------------------------------------------------
+SEND_STOP
+call STOP_WORD
+movfw DIG1
+call ENVIAR_LETRA
+movfw DIG2
+call ENVIAR_LETRA
+movfw DIG3
+call ENVIAR_LETRA
+movfw DIG4
+call ENVIAR_LETRA
+return
+;---------------------------------------------------------------------------------------------------------------------------
+SEND_CHRG
+call CHRG_WORD
+movfw DIG1
+call ENVIAR_LETRA
+movfw DIG2
+call ENVIAR_LETRA
+movfw DIG3
+call ENVIAR_LETRA
+movfw DIG4
+call ENVIAR_LETRA
+return
+;------------------------------------------------------------------------------------------------------------------------------
+ENVIAR_LETRA ;ENVIAR_BIT
+movwf DIG
+movlw 0x07
+movwf AUX
+subwf
+btfss
+
+bsf MM5414_DT
+bcf MM5414_DT
+
+bsf MM5414_CK
+bcf MM5414_CK
+call retardo
+return
+;------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 ;Datasheet, instruction set, pin diagram, block diagram, file map, bank0, directivas, flowchart, easyeda, device list
 
 ;arduino, ccs c, pic simulator, proteus, mplab, programmer, P16F690 LIST, Retardos.inc, partsim, piccompileronline
@@ -434,7 +485,7 @@ DT
 
 end
 
-ENVIAR_LETRA
+
 
 return
 
@@ -450,8 +501,7 @@ return
 INICIO
 GOTO
 CALL DPY
-SEND_STOP
-SEND_CHRG
+
 PRUEBA DPY
 
 
