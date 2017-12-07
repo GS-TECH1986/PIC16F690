@@ -120,14 +120,15 @@ CONFIG_PUERTOS
 
  bsf STATUS,RP0 ; pongo rp0 a 1 y paso al banco1
 
-movlw b'11111' ; cargo W con 11111
+movlw b'11111111' ; cargo W con 11111
 
 movwf trisa ; y paso el valor a trisa movlw b'00000000' ; cargo W con 00000000
-
+movlw b'11111111'
 movwf trisb ; y paso el valor a trisb
 
-movlw b'11111'
-
+movlw b'11111111'
+movwf trisc
+movlw b'11111111'
 movwf ADCON
 
 bcf estado,5 ; pongo rp0 a 0 y regreso al banco0
