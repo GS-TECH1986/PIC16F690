@@ -28,15 +28,7 @@ H_DIG     EQU B'01101110' ;
 R_DIG     EQU B'11101110' ;
 G_DIG     EQU B'11110101' ;
              
-RL1_BIT
-RL2_BIT
-
-
-DS1_3
-
-
-
-
+;DS1_3
 
 #define           RL1                PORTA,0          ; C3, 1KHZ, ACTIVACION RL1          (OUT)            PIN
 #define           RL2                PORTA,1          ; C4, 1KHZ, ACTIVACION RL2          (OUT)            PIN
@@ -58,21 +50,6 @@ DS1_3
 #define            CN6_3             PORTC,7          ;CN6_3                              (X)               PIN
 
 
-            
-            
-            #define STOP_SW PORT
-       
-       
-       #define STOP_SW PORT
-             #define STOP_SW PORT
-             #define STOP_SW PORT
-             #define STOP_SW PORT
-             #define STOP_SW PORT
-             #define STOP_SW PORT
-             #define STOP_SW PORT
-             #define STOP_SW PORT
-             #define STOP_SW PORT
-
 CBLOCK
 W_REG
 AUX
@@ -83,15 +60,23 @@ DIG4
 END
 
 
+ORG 0H
+
+ goto INICIO
+
+ORG 4H
+goto ISR
 
 
 
 ;-------------------------------------------------------------------------------------------------------------
 ;INICIO
-
-
-
-
+call  CONFIG_PUERTOS
+call  LEDTEST
+call  DPY
+WAIT call MUESTREO
+ GOTO WAIT
+END
 
 
 ;-------------------------------------------------------------------------------------------------------------
@@ -151,6 +136,9 @@ call DESPLIEGUE
 return
 ;------------------------------------------------------------------------------------------------------------
 ;PROBAR DISPLAY 8888
+
+LEDTEST
+
 call 8888_WORD
 call ENVIAR_WORD
 call retardo 2 seg
@@ -167,6 +155,8 @@ GIE PEIE T0IE PIE1 PIE2
 ISR
 movwf W_REG
 btfsc INTCON, ADCINT
+call TIMER_0
+call TIMER_1
 call ADC_SENSE
 btfsc INTCON,TMR0
 call COMP_RLY
@@ -430,16 +420,10 @@ CBLOCK    ;DECLARACION DE VARIABLE Y CONSTANTES
 
 ENDC
 
-ORG 0H
-
- goto inicio
-
-ORG 4H
-goto isr
 
 inicio
 
- call DPY
+ 
 
  
 
@@ -449,7 +433,7 @@ call STOP
 
 call CHRG 
 
-call LEDTEST
+
 
  
 
@@ -488,7 +472,7 @@ return
 ;
 
 
-INICIO
+ 
 GOTO
 CALL DPY
 
