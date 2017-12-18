@@ -15,7 +15,7 @@ __CONFIG   _CP_OFF & _DATA_CP_OFF & _LVP_OFF & _BOREN_OFF & _MCLRE_ON & _WDT_OFF
 List p=16f690
 
 RADIX hex
-
+#include	<p16f690.inc>
 RETARDOS.INC
              
 8_DIG     EQU B'11111111' ; BIT0=A BIT1=B BIT2=C BIT3=D BIT4=E BIT5=F  BIT6=G BIT7=(.)
@@ -50,7 +50,7 @@ G_DIG     EQU B'11110101' ;
 #define            CN6_3             PORTC,7          ;CN6_3                              (X)               PIN
 
 
-CBLOCK
+CBLOCK 0x20
 W_REG
 RLY_BITS
 AUX
@@ -82,6 +82,23 @@ END
 
 ;-------------------------------------------------------------------------------------------------------------
 ;CONFIGURACION DE PUERTOS
+
+movlw b'00000110'  ;sets 4 sec cycle
+   movwf OPTION_REG
+
+movlw b'10100000'  ;sets up the TMR0 interrupt
+         movwf INTCON 
+
+BCF		STATUS,RP1
+			BSF		STATUS,RP0		;BANK 1
+			MOVLW	06H
+			MOVWF	ADCON1
+			MOVLW	B'00000001'
+			MOVWF	OPTION_REG			
+			BCF		STATUS,RP0		;BANK 0
+			BSF		INTCON,TMR0IE
+			BSF		INTCON,GIE
+
 CONFIG_PUERTOS
 
  bsf STATUS,RP0 ; pongo rp0 a 1 y paso al banco1
