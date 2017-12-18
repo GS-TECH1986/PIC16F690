@@ -1,18 +1,9 @@
 ;--------------------------------------------------------------------------------------------------------------
 ;ENCABEZADO
 ;
-
-         ;NOMBRE CARGADOR TOTALIFT 36V BA30R0 5376R1
-
-      ;FECHA: 01/12/17
-
+;NOMBRE CARGADOR TOTALIFT 36V BA30R0 5376R1
+;FECHA: 01/12/17
 ;DEVICE: PIC16F690
-
-;
-;
-;
-;
-;
 ;--------------------------------------------------------------------------------------------------------------
 ;DECLARACION DE VARIABLES Y CONSTANTES
 
@@ -27,16 +18,6 @@ RADIX hex
 
 RETARDOS.INC
              
-
-
-
-
-
-
-
-
-       
-
 8_DIG     EQU B'11111111' ; BIT0=A BIT1=B BIT2=C BIT3=D BIT4=E BIT5=F  BIT6=G BIT7=(.)
 S_GIG     EQU B'10110110' ; PART NUMB: SA52-11EWA  KB 14-46 M
 T_DIG     EQU B'00011110' ;
@@ -49,33 +30,32 @@ G_DIG     EQU B'11110101' ;
              
 RL1_BIT
 RL2_BIT
-DS1_1
-DS1_2
+
+
 DS1_3
-DS1_4
-CN6_2
-CN6_3
-CN6_4
-MM5451_CLK
-MM5451_DATA
-#define RL1     PORTA,0 ; C3, 1KHZ, ACTIVACION RL1    (OUT)
-#define RL2     PORTA,1 ; C4, 1KHZ, ACTIVACION RL2    (OUT)
-#define NC1     PORTA,2 ; NO CONNECTION               (IN/OUT)
-#define STOP_SW PORTA,3 ; C16,XT1       (IN)
-#define STOP_SW PORTA,4 ; C15,XT1        (IN)
-#define STOP_SW PORTA,5 ; R12            (IN)
-#define STOP_SW PORTB,4 ;DS1_2
-#define STOP_SW PORTB,5 ; INPUT
-#define STOP_SW PORTB,6 ; DS1_4
-#define STOP_SW PORTB,7 ; CN6_2, OP1
-#define STOP_SW PORTC,0 ; DS1_1
-#define STOP_SW PORTC,1 ;MM5451_
-#define STOP_SW PORTC,2 ;MM5451_
-#define STOP_SW PORTC,3 ; C17
-#define STOP_SW PORTC,4 ;GND
-#define STOP_SW PORTC,5 ;R11
-#define STOP_SW PORTC,6 ;CN6_4
-#define STOP_SW PORTC,7 ;CN6_3
+
+
+
+
+
+#define           RL1                PORTA,0          ; C3, 1KHZ, ACTIVACION RL1          (OUT)            PIN
+#define           RL2                PORTA,1          ; C4, 1KHZ, ACTIVACION RL2          (OUT)            PIN
+#define           NC1                PORTA,2          ; NO CONNECTION                     (IN/OUT)         PIN
+#define           XT1_1                      PORTA,3          ; C16,XT1                           (IN)             PIN
+#define           XT1_2                PORTA,4          ; C15,XT1                           (IN)             PIN           
+#define           STOP_SW            PORTA,5          ; R12                               (IN)             PIN
+#define           DS1_2              PORTB,4          ;DS1_2                              (IN)             PIN
+#define           STOP_SW            PORTB,5          ; INPUT                             (IN)              PIN
+#define           DS1_4              PORTB,6          ; DS1_4                             (X)               PIN      
+#define           CN6_2_OP1            PORTB,7          ; CN6_2, OP1                        (X)               PIN
+#define           DS1_1              PORTC,0          ; DS1_1                             (IN)              PIN
+#define           MM5451_CLK         PORTC,1          ;MM5451_                            (OUT)             PIN
+#define           MM5451_DATA        PORTC,2          ;MM5451_                            (OUT)             PIN
+#define           STOP_SW            PORTC,3          ; C17                               (X)               PIN
+#define           STOP_SW            PORTC,4          ;GND                                (X)               PIN
+#define           STOP_SW            PORTC,5          ;R11                                (X)               PIN
+#define           CN6_4            PORTC,6          ;CN6_4                              (X)               PIN
+#define            CN6_3             PORTC,7          ;CN6_3                              (X)               PIN
 
 
             
