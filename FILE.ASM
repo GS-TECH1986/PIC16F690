@@ -52,6 +52,7 @@ G_DIG     EQU B'11110101' ;
 
 CBLOCK
 W_REG
+RLY_BITS
 AUX
 DIG1
 DIG2
@@ -182,7 +183,54 @@ subwf ADRESSLOW,W
 btfss STATUS,C
 goto SET_CHRG
 goto SET_STOP
+
+SET_STOP
+bcf RLY
+bcf INTCON,TMR0
+call STOPWORD
+call DESPLIEGUE
+
+
+
 ;----------------------------------------------------------------------------------------------------------
+CHRG_WORD
+movlw C_DIG
+movwf DIG1
+movlw H_DIG
+movwf DIG2
+movlw R_DIG
+movwf DIG3
+movlw G_DIG
+movwf DIG4
+return
+;------------------------------------------------------------------------------------------------------------------------------
+SEND_STOP
+call STOP_WORD
+movfw DIG1
+call ENVIAR_LETRA
+movfw DIG2
+call ENVIAR_LETRA
+movfw DIG3
+call ENVIAR_LETRA
+movfw DIG4
+call ENVIAR_LETRA
+return
+;---------------------------------------------------------------------------------------------------------------------------
+SEND_CHRG
+call CHRG_WORD
+movfw DIG1
+call ENVIAR_LETRA
+movfw DIG2
+call ENVIAR_LETRA
+movfw DIG3
+call ENVIAR_LETRA
+movfw DIG4
+call ENVIAR_LETRA
+return
+
+
+
+
 ;DESPLIEGUE    ;enviar bit, generar relog, tomar digito
 
 comf MM5451_CLK
@@ -278,11 +326,6 @@ movwf ADCON
 
 
 
-SET_STOP
-bcf RLY
-bcf INTCON,TMR0
-call STOPWORD
-call DESPLIEGUE
 
 
 
@@ -318,40 +361,7 @@ movwf DIG4
 return
 ;---------------------------------------------------------------------------------------------------------------------------
 
-CHRG_WORD
-movlw C_DIG
-movwf DIG1
-movlw H_DIG
-movwf DIG2
-movlw R_DIG
-movwf DIG3
-movlw G_DIG
-movwf DIG4
-return
-;------------------------------------------------------------------------------------------------------------------------------
-SEND_STOP
-call STOP_WORD
-movfw DIG1
-call ENVIAR_LETRA
-movfw DIG2
-call ENVIAR_LETRA
-movfw DIG3
-call ENVIAR_LETRA
-movfw DIG4
-call ENVIAR_LETRA
-return
-;---------------------------------------------------------------------------------------------------------------------------
-SEND_CHRG
-call CHRG_WORD
-movfw DIG1
-call ENVIAR_LETRA
-movfw DIG2
-call ENVIAR_LETRA
-movfw DIG3
-call ENVIAR_LETRA
-movfw DIG4
-call ENVIAR_LETRA
-return
+
 ;------------------------------------------------------------------------------------------------------------------------------
 ENVIAR_LETRA ;ENVIAR_BIT
 movwf DIG
