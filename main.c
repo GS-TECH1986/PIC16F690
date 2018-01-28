@@ -1,3 +1,6 @@
+q=read_adc
+
+
 #fuses
 #use delay
 #include <main2.h>
