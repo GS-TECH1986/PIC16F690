@@ -1,3 +1,4 @@
+set_adc_channel0(0)
 q=read_adc
 
 
