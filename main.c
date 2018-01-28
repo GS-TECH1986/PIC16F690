@@ -1,3 +1,4 @@
+#fuses
 #include <main2.h>
 
 void main()
