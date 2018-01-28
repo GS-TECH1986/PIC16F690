@@ -1,4 +1,5 @@
 #fuses
+#use delay
 #include <main2.h>
 
 void main()
