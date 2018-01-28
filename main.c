@@ -1,7 +1,7 @@
 #fuses
 #use delay
 #include <main2.h>
-
+#int_timer0
 void main()
 {
 	setup_adc_ports(sAN0);
