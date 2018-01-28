@@ -1,3 +1,5 @@
+INT8
+
 set_adc_channel0(0)
 q=read_adc
 #define PIN_A0 MM5451
