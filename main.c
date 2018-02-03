@@ -1,12 +1,13 @@
 #include <16F690.h>
 #use delay(crystal=4MHz)
-
+#fuses
 
 #device ADC=10
 
 
 #define LED PIN_A2
 #define DELAY 1000
+#define PIN_A0 MM5451
 
 
 
@@ -17,11 +18,11 @@ INT8
 
 set_adc_channel0(0)
 q=read_adc
-#define PIN_A0 MM5451
 
-#fuses
-#use delay
-#include <main2.h>
+
+
+
+
 #int_timer0
 void main()
 {
