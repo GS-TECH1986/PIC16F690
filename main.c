@@ -1,6 +1,17 @@
+//////// Program memory: 4096x14  Data RAM: 253  Stack: 8
+//////// I/O: 18   Analog Pins: 12
+//////// Data EEPROM: 256
+//////// C Scratch area: 20   ID Location: 2000
+//////// Fuses: LP,XT,HS,EC_IO,INTRC_IO,INTRC,RC_IO,RC,NOWDT,WDT,PUT,NOPUT
+//////// Fuses: NOMCLR,MCLR,PROTECT,NOPROTECT,CPD,NOCPD,NOBROWNOUT
+//////// Fuses: BROWNOUT_SW,BROWNOUT_NOSL,BROWNOUT,NOIESO,IESO,NOFCMEN,FCMEN
+//////// 
+
+
+
 #include <16F690.h>
 #use delay(crystal=4MHz)
-#fuses
+#fuses NOMCLR,PUT,PROTECT,CPD,INTRC_IO
 
 #device ADC=10
 
