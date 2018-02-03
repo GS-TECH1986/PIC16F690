@@ -1,3 +1,18 @@
+#include <16F690.h>
+#use delay(crystal=4MHz)
+
+
+#device ADC=10
+
+
+#define LED PIN_A2
+#define DELAY 1000
+
+
+
+
+
+
 INT8
 
 set_adc_channel0(0)
