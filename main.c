@@ -19,7 +19,26 @@
 #define LED PIN_A2
 #define DELAY 1000
 #define PIN_A0 MM5451
+#define PIN_A0  40
+#define PIN_A1  41
+#define PIN_A2  42
+#define PIN_A3  43
+#define PIN_A4  44
+#define PIN_A5  45
 
+#define PIN_B4  52
+#define PIN_B5  53
+#define PIN_B6  54
+#define PIN_B7  55
+
+#define PIN_C0  56
+#define PIN_C1  57
+#define PIN_C2  58
+#define PIN_C3  59
+#define PIN_C4  60
+#define PIN_C5  61
+#define PIN_C6  62
+#define PIN_C7 63
 
 
 
