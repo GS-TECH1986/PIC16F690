@@ -65,6 +65,19 @@ q=read_adc
 #int_timer0
 void main()
 {
+	while(TRUE)    // Endless loop
+   {
+     if(input(PIN_B0) == 0)
+     {
+       output_toggle(PIN_A0);
+       delay_ms(500);
+     }
+     if(input(PIN_B1) == 0)
+     {
+       output_toggle(PIN_A1);
+       delay_ms(500);
+     }
+   }
 	SET_TRIS_A(0b00000000); 
 	SET_TRIS_B(0b00000000); 
 	SET_TRIS_C(0b00000000); 
