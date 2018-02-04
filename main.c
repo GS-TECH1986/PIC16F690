@@ -58,6 +58,22 @@ INT8
 set_adc_channel0(0)
 q=read_adc
 
+#include <18F46K22.h> 
+#fuses INTRC_IO, NOWDT, BROWNOUT, PUT, NOPBADEN 
+#use delay(clock=4M) 
+#use rs232(baud=9600, UART1, ERRORS) 
+
+//====================================== 
+void main() 
+{      
+int8 i; 
+int8 my_array[] = 0x12,0x34,0x56,0x78; 
+
+for(i=0; i < sizeof(my_array); i++) 
+    printf("%x ", my_array[sizeof(my_array) -1 -i]); 
+  
+while(TRUE); 
+}
 
 
 
