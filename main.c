@@ -33,7 +33,7 @@
 #define   NC1	PIN_A2//; NO CONNECTION                     (IN/OUT)         PIN 17
 #define   XT1_1	 PIN_A3//; C16,XT1                           (IN)             PIN 4
 #define   XT1_2	PIN_A4//; C15,XT1                           (IN)             PIN     3  
-#define   STOP_SW PIN_A5	//; R12                               (IN)             PIN 2
+#define   STOP_SW PIN_A5	//; R12                               (IN)             PIN 2 XXXXXXXXXXXXXXXXXXXXX
 
 #define   DS1_2	PIN_B4 //;DS1_2                              (IN)             PIN 13
 #define   INPUT	PIN_B5 //; INPUT                             (IN)              PIN 12
