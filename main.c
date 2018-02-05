@@ -28,26 +28,26 @@
 
 #define LED PIN_A2
 #define DELAY 1000
-#define PIN_A0  RL1	//; C3, 1KHZ, ACTIVACION RL1          (OUT)            PIN 19
-#define PIN_A1  RL2	//; C4, 1KHZ, ACTIVACION RL2          (OUT)            PIN 18
-#define PIN_A2  NC1	//; NO CONNECTION                     (IN/OUT)         PIN 17
-#define PIN_A3  XT1_1	 //; C16,XT1                           (IN)             PIN 4
-#define PIN_A4  XT1_2	//; C15,XT1                           (IN)             PIN     3  
-#define PIN_A5  STOP_SW	//; R12                               (IN)             PIN 2
+#define   RL1	PIN_A0 //; C3, 1KHZ, ACTIVACION RL1          (OUT)            PIN 19
+#define   RL2	PIN_A1//; C4, 1KHZ, ACTIVACION RL2          (OUT)            PIN 18
+#define   NC1	PIN_A2//; NO CONNECTION                     (IN/OUT)         PIN 17
+#define   XT1_1	 PIN_A3//; C16,XT1                           (IN)             PIN 4
+#define   XT1_2	PIN_A4//; C15,XT1                           (IN)             PIN     3  
+#define   STOP_SW PIN_A5	//; R12                               (IN)             PIN 2
 
-#define PIN_B4  DS1_2	//;DS1_2                              (IN)             PIN 13
-#define PIN_B5  INPUT	//; INPUT                             (IN)              PIN 12
-#define PIN_B6  DS1_4	//; DS1_4                             (X)               PIN  11 
-#define PIN_B7  CN6_2_OP1	// ; CN6_2, OP1                        (X)               PIN 10
+#define   DS1_2	PIN_B4 //;DS1_2                              (IN)             PIN 13
+#define   INPUT	PIN_B5 //; INPUT                             (IN)              PIN 12
+#define   DS1_4	 PIN_B6//; DS1_4                             (X)               PIN  11 
+#define   CN6_2_OP1 PIN_B7	// ; CN6_2, OP1                        (X)               PIN 10
 
-#define PIN_C0  DS1_1		//; DS1_1                             (IN)              PIN 16
-#define PIN_C1  MM5451_CLK	//;MM5451_                            (OUT)             PIN 15
-#define PIN_C2  MM5451_DATA	//;MM5451_                            (OUT)             PIN 14
-#define PIN_C3  C17		//; C17                               (X)               PIN 7
-#define PIN_C4  PORTGND		//;GND                                (X)               PIN 6
-#define PIN_C5  R11		//;R11                                (X)               PIN 5
-#define PIN_C6  CN6_4		 //;CN6_4                              (X)               PIN 8
-#define PIN_C7 CN6_3		 //;CN6_3                              (X)               PIN 9        
+#define   DS1_1	PIN_C0	//; DS1_1                             (IN)              PIN 16
+#define   MM5451_CLK	PIN_C1 //;MM5451_                            (OUT)             PIN 15
+#define   MM5451_DATA PIN_C2	//;MM5451_                            (OUT)             PIN 14
+#define  C17		PIN_C3 //; C17                               (X)               PIN 7
+#define   PORTGND	PIN_C4	//;GND                                (X)               PIN 6
+#define  R11		PIN_C5 //;R11                                (X)               PIN 5
+#define   CN6_4		PIN_C6 //;CN6_4                              (X)               PIN 8
+#define  	FULL	PIN_C7 //;CN6_3                              (IN)               PIN 9       
 //;1-VCC,20-GND
 
 
