@@ -89,6 +89,9 @@ void main()
 	SET_TRIS_A(0b11111100); 
 	SET_TRIS_B(0b11111111); 
 	SET_TRIS_C(0b11111001); 
+	output_low
+	delay_ms(500);
+	
 	//setup_adc_ports(sAN0);
 	//setup_adc(ADC_CLOCK_INTERNAL);
 	setup_timer_0(RTCC_INTERNAL|RTCC_DIV_1|RTCC_8_BIT);
@@ -96,10 +99,12 @@ void main()
 	
 	while(TRUE)    // Endless loop
    {
-     if(input(PIN_B0) == 0)
+     if(input(FULL) == 0)
      {
-       output_toggle(PIN_A0);
+       output_high(RL1,RL2);
        delay_ms(500);
+else
+		     output_low(RL1,RL2);
      }
      if(input(PIN_B1) == 0)
      {
