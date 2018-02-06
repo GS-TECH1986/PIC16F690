@@ -69,9 +69,19 @@
 
 
 #int_timer0
-for(i=0; i < 36; i++) 
+	if(start == 0)
+     {
+       for(i=0; i < 36; i++) 
+    printf("%x ", my_array[sizeof(my_array) -1 -i]); 
+      
+     }
+else
+	{
+		     for(i=0; i < 36; i++) 
     printf("%x ", my_array[sizeof(my_array) -1 -i]); 
   
+     }
+
 
 
 
@@ -79,6 +89,7 @@ void main()
 {
 	setup_timer_0(RTCC_INTERNAL|RTCC_DIV_1|RTCC_8_BIT);
 	int8 i; 
+	int1 start;
 	int8 my_array[] = 0b10110110,0b00011110,0b11111100,0b11001110; //STOP
 	int8 my_array[] = 0b11111100,0b11111100,0b11111100,0b11111100; //CHRG
 	int8 my_array[] = 0b10011100,0b01111110,0b00011100,0b00011100; //FULL
@@ -88,6 +99,7 @@ void main()
 	SET_TRIS_C(0b11111001); 
 	
 	output_low
+		bit_set(start);
 	delay_ms(5000);
 	while(TRUE)    // Endless loop
    {
