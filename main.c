@@ -68,20 +68,6 @@
 
 
 
-//====================================== 
-//void main() 
-{      
-int8 i; 
-int8 my_array[] = 0b10110110,0b00011110,0b11111100,0b11001110; //STOP
-int8 my_array[] = 0b11111100,0b11111100,0b11111100,0b11111100; //CHRG
-int8 my_array[] = 0b10011100,0b01111110,0b00011100,0b00011100; //FULL
-int8 my_array[] = 0b11111111,0b11111111,0b11111111,0b11111111; //8888
-while(TRUE); 
-}
-
-
-
-
 #int_timer0
 for(i=0; i < 36; i++) 
     printf("%x ", my_array[sizeof(my_array) -1 -i]); 
@@ -91,9 +77,15 @@ for(i=0; i < 36; i++)
 
 void main()
 {
+	int8 i; 
+	int8 my_array[] = 0b10110110,0b00011110,0b11111100,0b11001110; //STOP
+	int8 my_array[] = 0b11111100,0b11111100,0b11111100,0b11111100; //CHRG
+	int8 my_array[] = 0b10011100,0b01111110,0b00011100,0b00011100; //FULL
+	int8 my_array[] = 0b11111111,0b11111111,0b11111111,0b11111111; //8888
 	SET_TRIS_A(0b11111100); 
 	SET_TRIS_B(0b11111111); 
 	SET_TRIS_C(0b11111001); 
+	
 	output_low
 	delay_ms(500);
 	
