@@ -72,7 +72,8 @@
 	if(start == 0)
      {
        for(i=0; i < 36; i++) 
-    printf("%x ", my_array[sizeof(my_array) -1 -i]); 
+    printf("%x ", my_array[sizeof(my_array) -1 -i]);MM5451_CLK 
+	       MM5451_DATA
       
      }
 else
