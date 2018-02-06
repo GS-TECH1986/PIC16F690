@@ -23,7 +23,7 @@
 #use delay(crystal=4MHz)
 #fuses NOMCLR,PUT,PROTECT,CPD,INTRC_IO,NOWDT
 
-#device ADC=10
+//#device ADC=10
 
 
 //#define LED PIN_A2
@@ -61,22 +61,21 @@
 	0b11111111,0b11111111,0b11111111,0b11111111
 	*/
 
-INT8
+////INT8
 
-set_adc_channel0(0)
-q=read_adc
+//set_adc_channel0(0)
+//q=read_adc
 
 
 
 //====================================== 
-void main() 
+//void main() 
 {      
 int8 i; 
-int8 my_array[] = 0x12,0x34,0x56,0x78; 
-
-for(i=0; i < sizeof(my_array); i++) 
-    printf("%x ", my_array[sizeof(my_array) -1 -i]); 
-  
+int8 my_array[] = 0b10110110,0b00011110,0b11111100,0b11001110; //STOP
+int8 my_array[] = 0b11111100,0b11111100,0b11111100,0b11111100; //CHRG
+int8 my_array[] = 0b10011100,0b01111110,0b00011100,0b00011100; //FULL
+int8 my_array[] = 0b11111111,0b11111111,0b11111111,0b11111111; //8888
 while(TRUE); 
 }
 
@@ -84,6 +83,12 @@ while(TRUE);
 
 
 #int_timer0
+for(i=0; i < 36; i++) 
+    printf("%x ", my_array[sizeof(my_array) -1 -i]); 
+  
+
+
+
 void main()
 {
 	SET_TRIS_A(0b11111100); 
