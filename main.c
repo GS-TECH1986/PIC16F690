@@ -77,6 +77,7 @@ for(i=0; i < 36; i++)
 
 void main()
 {
+	setup_timer_0(RTCC_INTERNAL|RTCC_DIV_1|RTCC_8_BIT);
 	int8 i; 
 	int8 my_array[] = 0b10110110,0b00011110,0b11111100,0b11001110; //STOP
 	int8 my_array[] = 0b11111100,0b11111100,0b11111100,0b11111100; //CHRG
@@ -87,41 +88,28 @@ void main()
 	SET_TRIS_C(0b11111001); 
 	
 	output_low
-	delay_ms(500);
-	
-	//setup_adc_ports(sAN0);
-	//setup_adc(ADC_CLOCK_INTERNAL);
-	setup_timer_0(RTCC_INTERNAL|RTCC_DIV_1|RTCC_8_BIT);
-	
-	
+	delay_ms(5000);
 	while(TRUE)    // Endless loop
    {
      if(input(FULL) == 0)
      {
        output_high(RL1,RL2);
-       delay_ms(500);
+      
+     }
 else
+	{
 		     output_low(RL1,RL2);
      }
      if(input(PIN_B1) == 0)
      {
-       output_toggle(PIN_A1);
-       delay_ms(500);
+      output_low(RL1,RL2);;
+       
      }
    }
-			//256 us overflow
-
-
-	while(TRUE)
-	{
-
-		//Example blinking LED program
-		output_low(LED);
-		delay_ms(DELAY);
-		output_high(LED);
-		delay_ms(DELAY);
-
-		//TODO: User Code
-	}
-
+	//setup_adc_ports(sAN0);
+	//setup_adc(ADC_CLOCK_INTERNAL);
+	
+	
+	
+	
 }
