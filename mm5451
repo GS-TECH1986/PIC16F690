@@ -87,29 +87,70 @@ else
      }
 
 */
+int8 digit;
+int8 stop_array[4] = 0b01110011,0b00111111,0b01111000,0b01101101; //STOP
+   int8 chrg_array[4] = 0b01101111,0b01110010,0b01110110, 0b00111001; //CHRG
+   int8 full_array[4] = 0b00111000,0b00111000,0b00111110,0b01110001; //FULL
+   int8 _8888_array[4] = 0b11111111,0b11111111,0b11111111,0b11111111; //8888
 
+ 
+ 
+ 
+ 
+ void exit(){
+ output_low( MM5451_DATA );
+   output_high( MM5451_CLK );
+                           delay_ms(1);
+                               
+                                    output_low( MM5451_CLK );
+                                    delay_ms(1);
+                                     output_high( MM5451_CLK );
+                       //    delay_ms(1);
+                               
+                       //             output_low( MM5451_CLK );
+                                    
+                                    
+                        //            delay_ms(1);
+                         
+                     //          output_high( MM5451_CLK );
+                       //  delay_ms(1);
+                                 //      output_low( MM5451_CLK );
+ 
+ }
+ 
+ void inicio(){
+ output_high( MM5451_DATA );
+ delay_ms(1);
+   output_high( MM5451_CLK );
+                           delay_ms(1);
+                               
+                                    output_low( MM5451_CLK );
+                                  //  delay_ms(1);
+                                   //  output_high( MM5451_CLK );
+  }
+ 
+ 
+ 
  void letter(){
    int8 num,dato;
-   int8 stop_array[4] = 0b10110110,0b00011110,0b11111100,0b11001110;
+  // int8 stop_array[4] = 0b01101101,0b00011110,0b11111100,0b11001110;
    for(num = 8; num > 0; --num ) {
   
-                           if ( bit_test(stop_array[0],0))    output_high( MM5451_DATA ); else output_low( MM5451_DATA );
+                           if ( bit_test(digit,0))    output_high( MM5451_DATA ); else output_low( MM5451_DATA );
+                           delay_ms(1);
                            output_high( MM5451_CLK );
                            delay_ms(1);
                                 // output_low(MM5451_DATA);
                                   //  output_high( MM5451_DATA );
-                                    output_low( MM5451_CLK );delay_ms(1);stop_array[0]>>=1;}
+                                    output_low( MM5451_CLK );digit>>=1;}
  
   }
 void main()
 {
    setup_timer_0(RTCC_INTERNAL|RTCC_DIV_1|RTCC_8_BIT);
-   int8 i,x,y,z,digit; 
+   int8 i,x,y,z; 
    int1 start;
-   int8 stop_array[4] = 0b10110110,0b00011110,0b11111100,0b11001110; //STOP
-   int8 chrg_array[4] = 0b11111100,0b11111100,0b11111100,0b11111100; //CHRG
-   int8 full_array[4] = 0b10011100,0b01111110,0b00011100,0b00011100; //FULL
-   int8 _8888_array[4] = 0b11111111,0b11111111,0b11111111,0b11111111; //8888
+   
    SET_TRIS_A(0b11111100); 
    SET_TRIS_B(0b11111111); 
    SET_TRIS_C(0b11111001); 
@@ -122,12 +163,153 @@ void main()
   // delay_ms(5000);
    while(TRUE)    // Endless loop
    {  
-   SET_TRIS_A(0b11111100); 
-   SET_TRIS_B(0b11111111); 
-   SET_TRIS_C(0b11111001); 
    
+  // inicio();
+  // SET_TRIS_A(0b11111100); 
+ //  SET_TRIS_B(0b11111111); 
+ //  SET_TRIS_C(0b11111001);  
+ // digit=stop_array[0];
+  //digit=chrg_array[0];
+  digit=full_array[0];
+   //digit=_8888_array[0];
+  letter();
+ // digit=stop_array[1];
+//  digit=chrg_array[1];
+  digit=full_array[1];
+ // digit=_8888_array[1];
+  letter();
+//  digit=stop_array[2];
+ // digit=chrg_array[2];
+  digit=full_array[2];
+//   digit=_8888_array[2];
+  letter();
+ // digit=stop_array[3];
+ // digit=chrg_array[3];
+  digit=full_array[3];
+ //  digit=_8888_array[3];
+   letter();
+  inicio();
+  inicio();
+  inicio();
+  inicio();
+ // exit();
+ // exit();
+ //  exit();
+  // exit();
+  // exit();
+         delay_ms(3000);  
+        // inicio();
+         digit=_8888_array[1];
+         letter();
+          digit=_8888_array[1];
+         letter();
+          digit=_8888_array[1];
+         letter();
+          digit=_8888_array[1];
+         letter();
+       //   digit=_8888_array[1];
+        // letter();
+       //  letter();
+       //  letter();
+     //    letter();
+     //     exit();
+      //    exit();
+     //     exit();
+           inicio();
+  inicio();
+  inicio();
+  inicio();
+      //    exit();
+         delay_ms(3000);
+         
+      //    delay_ms(3000);  
+         digit=0;
+         letter();
+          digit=0;
+         letter();
+          digit=0;
+         letter();
+          digit=0;
+         letter();
+       //   digit=_8888_array[1];
+        // letter();
+       //  letter();
+       //  letter();
+     //    letter();
+     //     exit();
+      //    exit();
+        //  exit();
+          inicio();
+  inicio();
+  inicio();
+  inicio();
+         delay_ms(3000);
+         
+         
+        // exit();
+           digit=stop_array[0];
+  //digit=chrg_array[0];
   
-  letter();while(TRUE) ;
+   //digit=_8888_array[0];
+  letter();
+  digit=stop_array[1];
+//  digit=chrg_array[1];
+  
+ // digit=_8888_array[1];
+  letter();
+digit=stop_array[2];
+ // digit=chrg_array[2];
+  
+//   digit=_8888_array[2];
+  letter();
+  digit=stop_array[3];
+ // digit=chrg_array[3];
+  
+ //  digit=_8888_array[3];
+   letter();
+   inicio();
+  inicio();
+  inicio();
+  inicio();
+   
+   delay_ms(3000);
+         
+         
+      //   delay_ms(1);
+           //                  output_high( MM5451_DATA )  ;
+                //                    output_low( MM5451_CLK );
+                  //                  delay_ms(1);
+                    //                 output_high( MM5451_CLK );
+                   //        delay_ms(1);
+                               
+                    //                output_low( MM5451_CLK );
+         
+  digit=chrg_array[0];
+  
+   //digit=_8888_array[0];
+  letter();
+  
+  digit=chrg_array[1];
+  
+ // digit=_8888_array[1];
+  letter();
+
+ digit=chrg_array[2];
+  
+//   digit=_8888_array[2];
+  letter();
+  
+  digit=chrg_array[3];
+  
+ //  digit=_8888_array[3];
+   letter();
+  inicio();
+  inicio();
+  inicio();
+  inicio();;
+  // letter();
+  delay_ms(3000); 
+ // while(TRUE) ;delay_ms(3000); 
 }
    
      
@@ -148,4 +330,4 @@ void main()
    
   
    }//setup_adc_ports(sAN0);
-   //setup_adc(ADC_CLOCK_INTERNAL);
+//setup_adc(ADC_CLOCK_INTERNAL);
