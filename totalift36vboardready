@@ -1,0 +1,329 @@
+//////// Program memory: 4096x14  Data RAM: 253  Stack: 8
+//////// I/O: 18   Analog Pins: 12
+//////// Data EEPROM: 256
+//////// C Scratch area: 20   ID Location: 2000
+//////// Fuses: LP,XT,HS,EC_IO,INTRC_IO,INTRC,RC_IO,RC,NOWDT,WDT,PUT,NOPUT
+//////// Fuses: NOMCLR,MCLR,PROTECT,NOPROTECT,CPD,NOCPD,NOBROWNOUT
+//////// Fuses: BROWNOUT_SW,BROWNOUT_NOSL,BROWNOUT,NOIESO,IESO,NOFCMEN,FCMEN
+//////// 
+/*;--------------------------------------------------------------------------------------------------------------;:;
+;NOMBRE CARGADOR TOTALIFT 36V BA30R0 5376R1
+;FECHA: 01/12/17
+;DEVICE: PIC16F690
+;https://github.com/GS-TECH1986/PIC16F690/wiki
+;--------------------------------------------------------------------------------------------------------------
+
+;CN3: 1-GND, 2-36V, 3-JP3, 4-R15, 5-JP2, 6-JP1
+;ICSP: VPP-4(C16,XT), VDD-1, GND-20, PDT-19, PCK,18
+
+*/
+
+
+#include <16F690.h>
+#device ADC=10
+#fuses NOMCLR,PUT,PROTECT,CPD,INTRC_IO,NOWDT
+#use delay(crystal=4MHz)
+
+#use fast_io(A)
+
+//#device ADC=10
+
+
+//#define LED PIN_A2
+//#define DELAY 1000
+#define   RL1   PIN_A0 //; C3, 1KHZ, ACTIVACION RL1          (OUT)            PIN 19
+#define   RL2   PIN_A1//; C4, 1KHZ, ACTIVACION RL2          (OUT)            PIN 18
+#define   NC1   PIN_A2//; NO CONNECTION                     (IN)         PIN 17
+#define   XT1_1    PIN_A3//; C16,XT1                           (IN)             PIN 4
+#define   XT1_2   PIN_A4//; C15,XT1                           (IN)             PIN     3  
+#define   STOP_SW PIN_A5   //; R12                               (IN)             PIN 2 XXXXXXXXXXXXXXXXXXXXX
+
+#define   DS1_2   PIN_B4 //;DS1_2                              (IN)             PIN 13
+#define   INPUT   PIN_B5 //; INPUT                             (IN)              PIN 12
+#define   DS1_4    PIN_B6//; DS1_4                             (IN)               PIN  11 
+#define   CN6_2_OP1 PIN_B7   // ; CN6_2, OP1                        (IN)               PIN 10
+
+#define   DS1_1   PIN_C0   //; DS1_1                             (IN)              PIN 16
+#define   MM5451_CLK   PIN_C1 //;MM5451_                            (OUT)             PIN 15
+#define   MM5451_DATA PIN_C2   //;MM5451_                            (OUT)             PIN 14
+#define  C17      PIN_C3 //; C17                               (X)               PIN 7
+#define   PORTGND   PIN_C4   //;GND                                (X)               PIN 6
+#define  R11      PIN_C5 //;R11                                (X)               PIN 5
+#define   CN6_4      PIN_C6 //;CN6_4                              (X)               PIN 8
+#define     FULL   PIN_C7 //;CN6_3                              (IN)               PIN 9       
+//;1-VCC,20-GND
+
+/*
+//STOP
+   0b10110110,0b00011110,0b11111100,0b11001110
+//CHRG
+   0b11111100,0b11111100,0b11111100,0b11111100
+//FULL
+   0b10011100,0b01111110,0b00011100,0b00011100
+//8888
+   0b11111111,0b11111111,0b11111111,0b11111111
+   */
+
+////INT8
+int8 digit;
+int8 stop_array[4] = 0b01110011,0b00111111,0b01111000,0b01101101; //STOP
+   int8 chrg_array[4] = 0b01101111,0b01110010,0b01110110, 0b00111001; //CHRG
+   int8 full_array[4] = 0b00111000,0b00111000,0b00111110,0b01110001; //FULL
+int8 _8888_array[4] = 0b11111111,0b11111111,0b11111111,0b11111111; //8888
+float r,v;
+
+
+
+
+void letter(){
+   int8 num,dato;
+   
+   
+   
+  // int8 stop_array[4] = 0b01101101,0b00011110,0b11111100,0b11001110;
+   for(num = 8; num > 0; --num ) {
+  
+                           if ( bit_test(digit,0))    output_high( MM5451_DATA ); else output_low( MM5451_DATA );
+                           delay_ms(1);
+                           output_high( MM5451_CLK );
+                           delay_ms(1);
+                                // output_low(MM5451_DATA);
+                                  //  output_high( MM5451_DATA );
+                                    output_low( MM5451_CLK );digit>>=1;}
+ 
+}
+void inicio(){
+ output_high( MM5451_DATA );
+ delay_ms(1);
+   output_high( MM5451_CLK );
+                           delay_ms(1);
+                               
+                                    output_low( MM5451_CLK );
+                                  //  delay_ms(1);
+                                   //  output_high( MM5451_CLK );
+}
+  
+  void fullword(){
+  digit=full_array[0];
+   //digit=_8888_array[0];
+  letter();
+ // digit=stop_array[1];
+//  digit=chrg_array[1];
+  digit=full_array[1];
+ // digit=_8888_array[1];
+  letter();
+//  digit=stop_array[2];
+ // digit=chrg_array[2];
+  digit=full_array[2];
+//   digit=_8888_array[2];
+  letter();
+ // digit=stop_array[3];
+ // digit=chrg_array[3];
+  digit=full_array[3];
+ //  digit=_8888_array[3];
+   letter();
+  inicio();
+  inicio();
+  inicio();
+  inicio();
+ }
+ 
+ 
+         void _8888_word()  {
+        // inicio();
+         digit=_8888_array[1];
+         letter();
+          digit=_8888_array[1];
+         letter();
+          digit=_8888_array[1];
+         letter();
+          digit=_8888_array[1];
+         letter();
+       //   digit=_8888_array[1];
+        // letter();
+       //  letter();
+       //  letter();
+     //    letter();
+     //     exit();
+      //    exit();
+     //     exit();
+           inicio();
+  inicio();
+  inicio();
+  inicio();}
+      //    exit();
+         void clearword(){
+         
+      //    delay_ms(3000);  
+         digit=0;
+         letter();
+          digit=0;
+         letter();
+          digit=0;
+         letter();
+          digit=0;
+         letter();
+       //   digit=_8888_array[1];
+        // letter();
+       //  letter();
+       //  letter();
+     //    letter();
+     //     exit();
+      //    exit();
+        //  exit();
+          inicio();
+  inicio();
+  inicio();
+  inicio();}
+         void stopword(){
+         
+         
+        // exit();
+           digit=stop_array[0];
+  //digit=chrg_array[0];
+  
+   //digit=_8888_array[0];
+  letter();
+  digit=stop_array[1];
+//  digit=chrg_array[1];
+  
+ // digit=_8888_array[1];
+  letter();
+digit=stop_array[2];
+ // digit=chrg_array[2];
+  
+//   digit=_8888_array[2];
+  letter();
+  digit=stop_array[3];
+ // digit=chrg_array[3];
+  
+ //  digit=_8888_array[3];
+   letter();
+   inicio();
+  inicio();
+  inicio();
+  inicio();
+   }
+  void chrgword(){
+         
+         
+      //   delay_ms(1);
+           //                  output_high( MM5451_DATA )  ;
+                //                    output_low( MM5451_CLK );
+                  //                  delay_ms(1);
+                    //                 output_high( MM5451_CLK );
+                   //        delay_ms(1);
+                               
+                    //                output_low( MM5451_CLK );
+         
+  digit=chrg_array[0];
+  
+   //digit=_8888_array[0];
+  letter();
+  
+  digit=chrg_array[1];
+  
+ // digit=_8888_array[1];
+  letter();
+
+ digit=chrg_array[2];
+  
+//   digit=_8888_array[2];
+  letter();
+  
+  digit=chrg_array[3];
+  
+ //  digit=_8888_array[3];
+   letter();
+  inicio();
+  inicio();
+  inicio();
+  inicio();
+  // letter();
+   }
+// while(TRUE) ;delay_ms(3000);
+
+
+void main()
+{
+  // setup_timer_0(RTCC_INTERNAL|RTCC_DIV_1|RTCC_8_BIT);
+   int8 i,x,y,z; 
+   int1 start;
+   
+   SET_TRIS_A(0b11111100); 
+   SET_TRIS_B(0b11111111); 
+   SET_TRIS_C(0b11111001); 
+   
+  OUTPUT_A(0x00); 
+  OUTPUT_B(0x00); 
+  OUTPUT_C(0x00);
+   
+    //  bit_set(start,0);
+      _8888_word();
+   delay_ms(3000);
+   
+   while(TRUE)    // Endless loop
+   {
+  //  setup_adc_ports(NO_ANALOGS);
+  // SET_TRIS_A(0b11111100); 
+  // SET_TRIS_B(0b11111111); 
+  // SET_TRIS_C(0b11111001); 
+   x=input_c();
+    z=input_a();
+  
+
+     if(!bit_test (z,2))
+     {stopword();
+     
+     delay_ms(3000);
+      output_low(RL1);
+       output_low(RL2);
+       delay_ms(200);
+        output_low(RL1);
+       output_low(RL2);
+       
+        while(TRUE) ;
+        
+        
+                           
+   }
+    
+    
+    setup_adc_ports(sAN9);
+   setup_adc(adc_clock_internal);
+   set_adc_channel(9);
+    r=read_adc();
+       v=(r/1024)*5;
+  // output_a(x);
+     if(v>=2.5)
+     {clearword();
+       fullword();
+     delay_ms(3000);
+     
+     output_low(RL1);
+       output_low(RL2);
+       delay_ms(200);
+        output_low(RL1);
+       output_low(RL2);
+       
+       while(TRUE);
+       
+      
+     }
+else
+   {
+   
+   output_high(RL1);
+       output_high(RL2);
+       delay_ms(200);
+       output_high(RL1);
+       
+       output_high(RL2);
+       
+             chrgword();
+     }
+    
+    
+}                     // stop switch
+     }
+  
